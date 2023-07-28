@@ -1,0 +1,22 @@
+.social {
+  > *,
+  > * > path,
+  > * > circle {
+    color: var(--secondary-foreground);
+    stroke: var(--secondary-foreground);
+  }
+  .kofiSVG > * {
+    fill: var(--secondary-foreground);
+  }
+  .kofiHeart {
+    fill: red;
+  }
+
+  #instagram-circle {
+    fill: var(--secondary-foreground);
+  }
+
+  #toyhouse-text {
+    fill: #888;
+  }
+}

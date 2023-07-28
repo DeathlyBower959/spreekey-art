@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TODO: Custom font @zitra */
+/* @font-face {
+  font-family: "FONTNAME";
+  src: local("FILENAME"),
+    url("./font/FILENAME.ttf") format("truetype");
+} */
+
+/* Variables */
+:root {
+  /* Background */
+  --bg: #080a0a;
+  --secondary-bg: #191f1f;
+  --tertiary-bg: #273030;
+  --nav-bg: 23, 36, 36; /* rgba(23, 36, 36) */
+  --code-bg: var(--tertiary-bg);
+
+  /* Foreground */
+  --foreground: #acc3bb;
+  --secondary-foreground: #6a7e76;
+
+  /* Accent */
+  --accent: #911a24;
+  --link-accent: #94d9c1;
+  --comms-open: #166716;
+  --comms-closed: #671616;
+  --heart-color: #f14255;
+
+  /* Scrollbar */
+  --scrollbar-thumb: #381215;
+  --scrollbar-thumb-hover: #451317;
+  --scrollbar-track: #111;
+  --scrollbar-track-hover: var(--scrollbar-track);
+
+  /* Masonry Grid (Gallery) */
+  --masonry-gutter-size: 0.5rem;
+
+  /* BG */
+  --bg-gradient: linear-gradient(
+    315deg,
+    hsl(180deg 11% 4%) 50%,
+    hsl(180deg 18% 8%) 83%,
+    hsl(180deg 24% 11%) 100%
+  );
+}
+
+/* 
+#B41825
+#491D23
+#22181C
+#090B0B
+#ACC3BB
+ */
+
+/* Resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'FONTNAME', 'Courier', Verdana, Tahoma, Geneva, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+code {
+  background-color: var(--code-background);
+  padding: 0.1em 0.25em;
+  border-radius: 5px;
+}
+
+/* Scrollbar */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  width: 7px;
+  background-color: var(--scrollbar-track);
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-track:hover,
+*::-webkit-scrollbar-track:active {
+  background-color: var(--scrollbar-track-hover);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover,
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-hover);
+}

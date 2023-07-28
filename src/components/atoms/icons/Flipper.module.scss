@@ -1,0 +1,23 @@
+.top-flip {
+  @keyframes TopFlip {
+    0% {
+      transform: rotateX(0);
+    }
+
+    100% {
+      transform: rotateX(90deg);
+    }
+  }
+  animation: TopFlip 200ms linear forwards;
+}
+.bottom-flip {
+  @keyframes BottomFlip {
+    0% {
+      transform: rotateX(-90deg);
+    }
+    100% {
+      transform: rotateX(0);
+    }
+  }
+  animation: BottomFlip 200ms linear 200ms forwards;
+}

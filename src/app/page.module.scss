@@ -1,0 +1,34 @@
+.button {
+  &:before {
+    background-color: var(--foreground);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+
+  &:hover:before {
+    top: 0;
+  }
+
+  &:hover {
+    color: var(--accent);
+    transition: 0.25s;
+  }
+
+  &:after {
+    position: absolute;
+    right: 2.34375rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%) translateX(50%);
+    -ms-transform: translateY(-50%) translateX(50%);
+    transform: translateY(-50%) translateX(50%);
+    font-size: 1.75em;
+  }
+}

@@ -1,0 +1,65 @@
+.stars {
+  --duration: 2s;
+
+  #small {
+    transform-origin: 10% 10%;
+    scale: 1;
+
+    @keyframes small {
+      0% {
+        scale: 1;
+      }
+      50% {
+        scale: 1.5;
+      }
+      100% {
+        scale: 1;
+      }
+    }
+
+    animation: small var(--duration) ease-in-out infinite;
+  }
+
+  #medium {
+    transform-origin: 80% 80%;
+    scale: 1;
+
+    @keyframes medium {
+      0% {
+        scale: 1;
+      }
+      55% {
+        scale: 0.5;
+      }
+      100% {
+        scale: 1;
+      }
+    }
+
+    animation: medium var(--duration) ease-in-out infinite;
+  }
+
+  #big {
+    transform-origin: 50% 50%;
+    scale: 1;
+
+    @keyframes big {
+      0% {
+        scale: 1;
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.75;
+      }
+      60% {
+        scale: 0.94;
+      }
+      100% {
+        scale: 1;
+        opacity: 1;
+      }
+    }
+
+    animation: big var(--duration) ease-in-out infinite;
+  }
+}

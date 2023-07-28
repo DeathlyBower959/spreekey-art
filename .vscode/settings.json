@@ -1,0 +1,16 @@
+{
+  "cSpell.words": [
+    "clsx",
+    "comms",
+    "Elie",
+    "kofi",
+    "Salv",
+    "Silke",
+    "Spreekey",
+    "toyhouse"
+  ],
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}
