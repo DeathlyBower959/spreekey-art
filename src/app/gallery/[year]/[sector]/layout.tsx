@@ -1,6 +1,9 @@
-import { IArtLocation, IArtLocationKeys } from '~/app/api/discord/gallery/galleryImages';
+import {
+  IArtLocation,
+  IArtLocationKeys,
+} from '~/app/api/discord/gallery/galleryImages';
 
-import { GalleryView } from '../../favorites/components/galleryView';
+import { GalleryView } from '../../components/GalleryView';
 import { TopBar } from './components/TopBar';
 
 export function generateStaticParams() {
@@ -17,7 +20,7 @@ export default function SectorLayout({
   params: { year, sector },
 }: {
   children: React.ReactNode;
-  params: { year: string; sector: IArtLocation };
+  params: { year: number; sector: IArtLocation };
 }) {
   return (
     <div>

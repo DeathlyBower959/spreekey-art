@@ -6,7 +6,8 @@ import {
   ChannelType,
 } from 'discord-api-types/v10';
 import { NextResponse } from 'next/server';
-import { cache } from 'react';
+import { env } from '~/env.mjs';
+
 import {
   DiscordImageHostRegex,
   DiscordImagePathRegex,
@@ -18,8 +19,7 @@ import {
   IDiscordImageURL,
   IGalleryImages,
   IURLMode,
-} from '~/app/api/discord/gallery/galleryImages';
-import { env } from '~/env.mjs';
+} from './galleryImages';
 
 const DISCORD_API_URL = 'https://discord.com/api/v10/';
 const dapi = (url: string, data: RequestInit = {}) =>
@@ -29,10 +29,10 @@ const dapi = (url: string, data: RequestInit = {}) =>
       ...data.headers,
       Authorization: `Bot ${env.DISCORD_TOKEN}`,
     },
-    // next: { revalidate: 60 * 60 * 12 }, // Cache is inconsistent, keep an eye on it
+    next: { revalidate: 60 * 60 * 1 }, // In seconds
   });
 
-export const revalidate = 30;
+// export const revalidate = 10;
 export const dynamic = 'force-dynamic';
 
 interface IArtYearChannels {
@@ -49,9 +49,11 @@ interface TotalCount {
 type Messages = IArt[];
 
 export async function GET() {
-  console.time('Test');
+  return NextResponse.json(await GetData());
+}
+
+export async function GetData() {
   const { out, totals } = await AggregateImages();
-  console.timeEnd('Test');
 
   console.log(
     `Total Art: ${totals.main + totals.alt + totals.sketches}\n` +
@@ -60,8 +62,7 @@ export async function GET() {
       `Sketches: ${totals.sketches}`
   );
 
-  return NextResponse.json(out);
-  // return out;
+  return out;
 }
 
 const AggregateImages = async () => {

@@ -1,4 +1,4 @@
-import { GalleryView } from './favorites/components/galleryView';
+import { GalleryView } from './components/GalleryView';
 
 export default function Gallery() {
   return <GalleryView />;

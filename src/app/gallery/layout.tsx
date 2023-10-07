@@ -17,7 +17,7 @@ export default function GalleryLayout({
   return (
     // TODO: Convert [calc(100vh_-_5rem)] into a tailwind utility class
     <div className='relative flex min-h-screen w-full max-md:min-h-[calc(100vh_-_5rem)]'>
-      {/* TODO: Work on after elements and stuff*/}
+      {/* FIX: Work on after elements and stuff*/}
       {/* Sidebar w-[10em]*/}
       <div className='fixed left-0 top-0 flex h-screen w-0 flex-col items-center overflow-hidden bg-secondary pb-8 pt-12 text-center transition-[width] duration-500 ease-[ease] max-md:top-20 max-md:h-[calc(100vh_-_5rem)]'>
         <div className='my-8 flex h-full flex-col items-center gap-20 overflow-y-auto overflow-x-hidden py-8'>

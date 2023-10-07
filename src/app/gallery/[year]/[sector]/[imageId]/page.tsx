@@ -10,8 +10,6 @@ import {
 } from '~/app/api/discord/gallery/galleryImages';
 import Loader from '~/components/atoms/loaders/Loader';
 
-import FocusedGalleryImage from './components/FocusedGalleryImage';
-
 interface IFetchedArt extends IArt {
   year: number;
   ID: IDiscordImageID;
@@ -67,7 +65,7 @@ export default function ImagePage({
     }
 
     main();
-  }, []);
+  }, [imageId]);
 
   return (
     <div

@@ -1,15 +1,13 @@
 'use client';
 
-import { GalleryView } from './components/galleryView';
-
-export default function FavoritesLayout({
+export default async function FavoritesLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div>
-      <GalleryView isFavorite={true} />
+      {/* <GalleryView data={data as IGalleryImages} /> */}
       {children}
     </div>
   );

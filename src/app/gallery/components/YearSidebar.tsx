@@ -16,7 +16,7 @@ function YearSidebar({ sector = 'main' }: IProps) {
         <Link
           href={`/gallery/${year}/${sector}`}
           key={year}
-          className='text-3xl font-bold no-underline w-min visited:text-inherit active:text-inherit max-md:rotate-90'
+          className='w-min text-3xl font-bold no-underline visited:text-inherit active:text-inherit max-md:rotate-90'
         >
           {year}
         </Link>

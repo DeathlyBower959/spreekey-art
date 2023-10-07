@@ -1,7 +1,7 @@
 export { generateStaticParams } from '../../[year]/[sector]/[imageId]/layout';
+export { dynamicParams };
 
 const dynamicParams = false;
-export { dynamicParams };
 
 export default function GalleryZoomedFavorite({
   children,
