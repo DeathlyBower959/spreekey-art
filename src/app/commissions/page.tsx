@@ -19,15 +19,16 @@ export default async function Commissions() {
 
   if (!index || index < 0) throw new Error('TOS not found');
 
-  let TOSData = cards
-    .slice(index + 1, cards.length)
-    .map(({ shortUrl, labels, ...card }) => card);
-
-  // As seen on trello page, this refers to `General` under `[0] Important, TOS`
-  const generalTOS = TOSData.shift();
-  if (!generalTOS) throw new Error('TOS data not found');
-
-  TOSData.splice(2, 0, generalTOS);
+  // let TOSData = cards
+  //   .slice(index + 1, cards.length)
+  //   .map(({ shortUrl, labels, ...card }) => card);
+  let TOSData = cards[index].desc.split(/-{3,}/g, 3).map((content, idx) => ({
+    section: content.match(/### \*\*✦ (?<title>.*)\*\*/)?.groups?.['title'],
+    content:
+      idx >= -1
+        ? content.split('\n\n', 3).splice(2).join('"\n\n')
+        : content.split('\n\n', 3)[2],
+  })); // FIX spacing difference on first vs 2nd page
 
   return (
     <>
@@ -41,11 +42,11 @@ export default async function Commissions() {
         >
           <thead>
             <tr className='bg-tertiary'>
-              <th className='bg-secondary text-left text-2xl'></th>
-              <th className='bg-secondary text-left text-2xl'>NAME</th>
-              <th className='bg-secondary text-left text-2xl'>TYPE</th>
-              <th className='bg-secondary text-left text-2xl'>ACCEPTED</th>
-              <th className='bg-secondary text-left text-2xl'>STATUS</th>
+              <th className='text-2xl text-left bg-secondary'></th>
+              <th className='text-2xl text-left bg-secondary'>NAME</th>
+              <th className='text-2xl text-left bg-secondary'>TYPE</th>
+              <th className='text-2xl text-left bg-secondary'>ACCEPTED</th>
+              <th className='text-2xl text-left bg-secondary'>STATUS</th>
             </tr>
           </thead>
           <tbody>
@@ -107,7 +108,7 @@ export default async function Commissions() {
 
                   return (
                     <tr className='bg-tertiary' key={card.id}>
-                      <td className='bg-secondary text-2xl'>
+                      <td className='text-2xl bg-secondary'>
                         <div
                           dir='rtl'
                           className='grid columns-2 items-center gap-[0.35em]'
@@ -122,7 +123,10 @@ export default async function Commissions() {
                         </div>
                       </td>
                       <td className='relative rounded-sm px-6 py-0.5 text-2xl after:absolute after:left-0 after:top-2/4 after:block after:h-[0.1px] after:w-full after:-translate-y-2/4 after:bg-secondary'>
-                        <NumberFlipper current={name} delay={400} />
+                        <NumberFlipper
+                          current={name || '[REDACTED]'}
+                          delay={400}
+                        />
                       </td>
 
                       <td className='relative rounded-sm px-6 py-0.5 text-2xl after:absolute after:left-0 after:top-2/4 after:block after:h-[0.1px] after:w-full after:-translate-y-2/4 after:bg-secondary'>
@@ -135,7 +139,10 @@ export default async function Commissions() {
                         />
                       </td>
                       <td className='relative rounded-sm px-6 py-0.5 text-2xl after:absolute after:left-0 after:top-2/4 after:block after:h-[0.1px] after:w-full after:-translate-y-2/4 after:bg-secondary'>
-                        <NumberFlipper current={status} delay={850} />
+                        <NumberFlipper
+                          current={status || 'UNTRACKED'}
+                          delay={850}
+                        />
                       </td>
                     </tr>
                   );
@@ -146,20 +153,20 @@ export default async function Commissions() {
         </table>
       </div>
 
-      <h3 className='m-2 mb-8 mt-0 text-center text-5xl font-bold'>
+      <h3 className='m-2 mt-0 mb-8 text-5xl font-bold text-center'>
         Terms of Service
       </h3>
       <div className='mx-auto mb-8 grid max-w-[130rem] grid-cols-2 gap-8 px-12 max-xl:grid-cols-1'>
         {TOSData.map((section, sectionIdx) => {
           return (
             <section
-              className='rounded-m flex-1 bg-secondary px-8 py-4'
-              key={section.id}
+              className='flex-1 px-8 py-4 rounded-m bg-secondary'
+              key={section.section}
             >
-              <h3 className='mb-3 text-center text-2xl font-bold'>
-                {section.name}
+              <h3 className='mb-3 text-2xl font-bold text-center'>
+                {section.section}
               </h3>
-              {section.desc
+              {section.content
                 .replaceAll('-', trelloConfig.TOS.PREFIXED_CHARACTER)
                 // .replaceAll(/### (.*):/g, '[$1 ]')
                 .split('\n')

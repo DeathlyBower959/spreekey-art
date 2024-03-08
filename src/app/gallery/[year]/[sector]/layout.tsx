@@ -3,7 +3,7 @@ import {
   IArtLocationKeys,
 } from '~/app/api/discord/gallery/galleryImages';
 
-import { GalleryView } from '../../components/GalleryView';
+import { GalleryData } from '../../components/GalleryData';
 import { TopBar } from './components/TopBar';
 
 export function generateStaticParams() {
@@ -29,7 +29,7 @@ export default function SectorLayout({
         <h1 className='text-6xl font-bold'>{year || ''}</h1>
         <TopBar sector={sector} />
       </div>
-      <GalleryView year={year} sector={sector} />
+      <GalleryData year={year} sector={sector} />
       {children}
     </div>
   );

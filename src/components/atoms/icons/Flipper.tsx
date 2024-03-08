@@ -46,7 +46,6 @@ const flipStyles = clsx(
 // TODO: Borders around each character
 function NumberFlipper({ initial, current, delay = 0 }: IProps) {
   const init = initial || new Array(current.length).fill('x').join('');
-
   const [state, setState] = useState({
     backTop: init.toUpperCase(),
     backBottom: init.toUpperCase(),

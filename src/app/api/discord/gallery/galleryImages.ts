@@ -45,6 +45,9 @@ export const DiscordImagePathIDRegex = new RegExp('([0-9]+)/([0-9]+)');
 export const DiscordImagePathRegex = new RegExp(
   DiscordImagePathIDRegex.source + '/[A-z,0-9,-]+.[A-z]+'
 );
+export const DiscordImagePathDataRegex = new RegExp(
+  DiscordImagePathRegex.source + '.*'
+);
 
 export const DiscordImageHostRegex = new RegExp(
   'https://(media|cdn).discordapp.(net|com)/attachments/'

@@ -10,6 +10,7 @@ import { env } from '~/env.mjs';
 
 import {
   DiscordImageHostRegex,
+  DiscordImagePathDataRegex,
   DiscordImagePathRegex,
   DiscordMediaHostRegex,
   IArt,
@@ -29,7 +30,9 @@ const dapi = (url: string, data: RequestInit = {}) =>
       ...data.headers,
       Authorization: `Bot ${env.DISCORD_TOKEN}`,
     },
-    next: { revalidate: 60 * 60 * 1 }, // In seconds
+    // next: { revalidate: 60 * 60 * 1 }, // In seconds
+    next: { revalidate: 60 * 15 }, // In seconds
+    // cache: 'no-store',
   });
 
 // export const revalidate = 10;
@@ -208,7 +211,6 @@ function PopulateMessages(year: number, channel: APITextChannel | null) {
 
         const attachments = msg.attachments;
         if (attachments?.length === 0) {
-          console.warn(`No attachments: ${msg.id}`);
           continue;
         }
 
@@ -240,9 +242,10 @@ function PopulateMessages(year: number, channel: APITextChannel | null) {
             return;
           }
 
-          let data: Messages[0] = {
-            mode: !!mode ? IURLMode.MEDIA : IURLMode.CDN,
-            url: path as IDiscordImagePath,
+          let data: Messages[number] = {
+            mode: mode ? IURLMode.MEDIA : IURLMode.CDN,
+            url: (url.match(DiscordImagePathDataRegex)?.[0] ??
+              '1/1/t') as IDiscordImagePath,
             dims,
           };
 
