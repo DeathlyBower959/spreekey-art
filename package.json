@@ -12,6 +12,8 @@
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.4.1",
     "@total-typescript/ts-reset": "^0.4.2",
+    "@ts-stack/markdown": "^1.5.0",
+    "@types/dompurify": "^3.0.5",
     "@types/node": "20.1.4",
     "@types/parallax-js": "^3.1.0",
     "@types/react": "^18.3.3",

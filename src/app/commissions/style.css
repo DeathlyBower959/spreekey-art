@@ -1,0 +1,12 @@
+.commissions_content ul {
+  list-style-type: none;
+}
+.commissions_content li {
+  padding-left: 16px;
+}
+.commissions_content li:before {
+  content: '✦';
+  margin-left: -16px;
+  width: 16px;
+  display: inline-block;
+}

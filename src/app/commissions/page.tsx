@@ -1,9 +1,13 @@
+import './style.css';
+
 import { FaVrCardboard } from 'react-icons/fa';
 import { MdChecklistRtl } from 'react-icons/md';
 import { getTrelloData } from '~/app/api/trello';
 import MemoAnimated from '~/components/atoms/icons/Animated';
 import NumberFlipper from '~/components/atoms/icons/Flipper';
 import { trelloConfig } from '~/config';
+
+import { Marked } from '@ts-stack/markdown';
 
 // 10 minutes
 // export const revalidate = 600;
@@ -19,16 +23,18 @@ export default async function Commissions() {
 
   if (!index || index < 0) throw new Error('TOS not found');
 
-  // let TOSData = cards
-  //   .slice(index + 1, cards.length)
-  //   .map(({ shortUrl, labels, ...card }) => card);
-  let TOSData = cards[index].desc.split(/-{3,}/g, 3).map((content, idx) => ({
-    section: content.match(/### \*\*✦ (?<title>.*)\*\*/)?.groups?.['title'],
-    content:
-      idx >= -1
-        ? content.split('\n\n', 3).splice(2).join('"\n\n')
-        : content.split('\n\n', 3)[2],
-  })); // FIX spacing difference on first vs 2nd page
+  let TOSData = cards[index].desc
+    .split(/-{3,}/g)
+    .map(
+      content =>
+        content.trim() && {
+          section: content.match(/### \*\*✦ (?<title>.*)\*\*/)?.groups?.[
+            'title'
+          ],
+          content: content.replace(/[S\s]*### \*\*✦ [\S\s]*?\*\*/, '').trim(),
+        }
+    )
+    .filter(Boolean);
 
   return (
     <>
@@ -60,21 +66,27 @@ export default async function Commissions() {
 
                 if ((list.cards?.length || 0) <= 0) return null;
                 return list.cards?.map(card => {
-                  const nameSplit = card.name.split(' ');
-                  const name = nameSplit[1];
+                  const type = card.name
+                    .match(/\[.+\]/g)?.[0]
+                    .replace(/[\[\]]/g, '');
                   // if (!name) return null;
 
-                  const type = nameSplit[0]
-                    .match(/.+/)?.[0]
-                    .replace('[', '')
-                    .replace(']', '');
+                  const name = card.name.match(/] .+$/g)?.[0].replace('] ', '');
                   // if (!type) return null;
 
-                  const acceptedDate = card.desc
-                    .match(
-                      /Date accepted: ([0-9]{1,2})(.|-)([0-9]{1,2})(.|-)([0-9]{1,2})/
-                    )?.[0]
-                    .split(': ')[1];
+                  let date = new Date(
+                    card.desc
+                      .match(
+                        /Date accepted: ([0-9]{1,2})(.|-)([0-9]{1,2})(.|-)([0-9]{1,2})/
+                      )?.[0]
+                      .split(': ')[1] ||
+                      1000 * parseInt(card.id.substring(0, 8), 16)
+                  );
+                  const acceptedDate = !isNaN(date.getTime())
+                    ? `${date.getDate()}.${date.getMonth() + 1}.${
+                        date.getFullYear() % 100
+                      }`
+                    : null;
                   // if (!acceptedDate) return null;
 
                   if (!card.labels) return null;
@@ -166,78 +178,13 @@ export default async function Commissions() {
               <h3 className='mb-3 text-2xl font-bold text-center'>
                 {section.section}
               </h3>
-              {section.content
-                .replaceAll('-', trelloConfig.TOS.PREFIXED_CHARACTER)
-                // .replaceAll(/### (.*):/g, '[$1 ]')
-                .split('\n')
-                .map((item, itemIdx) => (
-                  <div
-                    className='mb-4'
-                    key={`comm-item-${sectionIdx}-${itemIdx}`}
-                  >
-                    {item
-                      .split(/(\*\*.*?\*\*)|(>>> .*?)|(### .*)|(`.*`)/)
-                      .map((group, groupIdx) => {
-                        if (!group) return null;
 
-                        if (
-                          group.match(/\*\*.*?\*\*/) &&
-                          group.match(/### (.*):/)
-                        )
-                          return (
-                            <div
-                              key={`comm-item-strong-title-${itemIdx}-${groupIdx}`}
-                            >
-                              <br />
-                              <strong>
-                                {group
-                                  .replace(/### (.*):/, '$1')
-                                  .replace(
-                                    /\*\*(.*?)\*\*/,
-                                    `${trelloConfig.TOS.TITLE_ENCAPSULATION_CHARACTERS[0]} $1 ${trelloConfig.TOS.TITLE_ENCAPSULATION_CHARACTERS[1]}`
-                                  )}
-                              </strong>
-                            </div>
-                          );
-
-                        if (group.match(/`.*`/)) {
-                          return (
-                            <code key={`comm-item-code-${itemIdx}-${groupIdx}`}>
-                              {group.replace(/`(.*)`/, '$1')}
-                            </code>
-                          );
-                        }
-
-                        if (group.match(/### (.*):/)) {
-                          return (
-                            <div key={`comm-item-title-${itemIdx}-${groupIdx}`}>
-                              <br />
-                              {group.replace(/### (.*):/, '$1')}
-                            </div>
-                          );
-                        }
-
-                        if (group.match(/(\*\*.*?\*\*)/))
-                          return (
-                            <strong
-                              key={`comm-item-strong-${itemIdx}-${groupIdx}`}
-                            >
-                              {group.replace(/\*\*(.*?)\*\*/, '$1')}
-                            </strong>
-                          );
-
-                        if (group.match(/>>>(.*?)/))
-                          return (
-                            <hr
-                              className='my-4 w-full border-[1px] border-solid border-[var(--tertiary-background)]'
-                              key={`comm-item-horizontal-rule-${itemIdx}-${groupIdx}`}
-                            />
-                          );
-
-                        return group + ' ';
-                      })}
-                  </div>
-                ))}
+              <div
+                className='commissions_content'
+                dangerouslySetInnerHTML={{
+                  __html: Marked.parse(section.content, { sanitize: true }),
+                }}
+              />
             </section>
           );
         })}
