@@ -9,6 +9,8 @@ import { trelloConfig } from '~/config';
 
 import { Marked } from '@ts-stack/markdown';
 
+import KoFi from '../../components/atoms/icons/socials/Ko-Fi';
+
 // 10 minutes
 // export const revalidate = 600;
 // export const dynamic = 'force-dynamic';
@@ -131,6 +133,14 @@ export default async function Commissions() {
                           )}
                           {isLabel('ANIMATED') && (
                             <MemoAnimated title='animated' />
+                          )}
+                          {/kofi/gi.test(type || '') && (
+                            <div className='max-w-[35.13px]'>
+                              <KoFi
+                                cup='var(--foreground)'
+                                heart='var(--secondary-foreground)'
+                              />
+                            </div>
                           )}
                         </div>
                       </td>
