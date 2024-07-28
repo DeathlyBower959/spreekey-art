@@ -1,10 +1,10 @@
-import { GetData } from '~/app/api/discord/gallery/route';
+import { GetData } from '~/utils/discord/gallery/route';
 
 import {
   IArt,
   IArtYear,
   IGalleryImages,
-} from '../../api/discord/gallery/galleryImages';
+} from '../../../utils/discord/gallery/galleryImages';
 import { GalleryView } from './GalleryView';
 
 interface IQueryData {

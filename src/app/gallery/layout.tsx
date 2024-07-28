@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { AiFillHome } from 'react-icons/ai';
 import { ImHeart } from 'react-icons/im';
 
-import { IArtLocation } from '../api/discord/gallery/galleryImages';
+import { IArtLocation } from '../../utils/discord/gallery/galleryImages';
 import YearSidebar from './components/YearSidebar';
 
 // TODO: Work on sidebar

@@ -5,7 +5,6 @@ import {
   APITextChannel,
   ChannelType,
 } from 'discord-api-types/v10';
-import { NextResponse } from 'next/server';
 import { env } from '~/env.mjs';
 
 import {
@@ -50,10 +49,6 @@ interface TotalCount {
 }
 
 type Messages = IArt[];
-
-export async function GET() {
-  return NextResponse.json(await GetData());
-}
 
 export async function GetData() {
   const { out, totals } = await AggregateImages();

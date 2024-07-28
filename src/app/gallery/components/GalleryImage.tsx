@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { CSSProperties } from 'react';
-import { IArt, IURLMode } from '~/app/api/discord/gallery/galleryImages';
+import { IArt, IURLMode } from '~/utils/discord/gallery/galleryImages';
 
 interface IProps {
   art: IArt;

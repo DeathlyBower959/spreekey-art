@@ -1,14 +1,14 @@
 'use client';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Loader from '~/components/atoms/loaders/Loader';
 import {
   DiscordImagePathIDRegex,
   IArt,
   IDiscordImageID,
   IGalleryImages,
   ISectorKey,
-} from '~/app/api/discord/gallery/galleryImages';
-import Loader from '~/components/atoms/loaders/Loader';
+} from '~/utils/discord/gallery/galleryImages';
 
 interface IFetchedArt extends IArt {
   year: number;

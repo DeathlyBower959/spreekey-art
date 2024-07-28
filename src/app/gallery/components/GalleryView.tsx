@@ -2,7 +2,7 @@
 
 import { Masonry, RenderComponentProps } from 'masonic';
 
-import { IArt } from '../../api/discord/gallery/galleryImages';
+import { IArt } from '../../../utils/discord/gallery/galleryImages';
 import GalleryImage from './GalleryImage';
 
 interface IProps {

@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { IArtLocation } from '~/app/api/discord/gallery/galleryImages';
+import { IArtLocation } from '~/utils/discord/gallery/galleryImages';
 
 export function TopBar({ sector }: { sector: IArtLocation }) {
   return (

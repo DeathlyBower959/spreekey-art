@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { memo } from 'react';
-import { IArtLocation } from '~/app/api/discord/gallery/galleryImages';
 import { YEAR_RANGE } from '~/config';
+import { IArtLocation } from '~/utils/discord/gallery/galleryImages';
 import valueRange from '~/utils/valueRange';
 
 interface IProps {

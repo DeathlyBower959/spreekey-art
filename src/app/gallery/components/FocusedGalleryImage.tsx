@@ -7,12 +7,12 @@ import { useEffect, useRef, useState } from 'react';
 import { BiLinkExternal } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import { useDoubleTap } from 'use-double-tap';
-// Types
-import { IDiscordImageURL } from '~/app/api/discord/gallery/galleryImages';
 // Atoms
 import AnimatedHeart from '~/atoms/icons/AnimatedHeart';
 import useWindowResize from '~/hooks/useWindowResize';
 import cleanURL from '~/utils/cleanURL';
+// Types
+import { IDiscordImageURL } from '~/utils/discord/gallery/galleryImages';
 import getObjectRects from '~/utils/renderedImageSize';
 // Util
 import { toRoman } from '~/utils/romanNumeral';

@@ -1,7 +1,7 @@
 import {
   IArtLocation,
   IArtLocationKeys,
-} from '~/app/api/discord/gallery/galleryImages';
+} from '~/utils/discord/gallery/galleryImages';
 
 import { GalleryData } from '../../components/GalleryData';
 import { TopBar } from './components/TopBar';
