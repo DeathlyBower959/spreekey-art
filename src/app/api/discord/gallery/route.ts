@@ -72,8 +72,11 @@ const AggregateImages = async () => {
   const GUILD_ID = '982673799747080192';
 
   const channelsRes = await dapi(`guilds/${GUILD_ID}/channels`);
-  if (!channelsRes.ok)
-    throw new Error(`Failed to find channels in guild: ${GUILD_ID}`);
+  if (!channelsRes.ok) {
+    throw new Error(`Failed to find channels in guild: ${GUILD_ID}`, {
+      cause: channelsRes.text(),
+    });
+  }
   const all_channels = (await channelsRes.json()) as APIChannel[];
 
   let text_channels: APITextChannel[] = [];
