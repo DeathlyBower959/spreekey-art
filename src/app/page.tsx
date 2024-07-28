@@ -1,10 +1,10 @@
 'use client';
 import clsx from 'clsx';
 import Link from 'next/link';
-import CommissionsImage from '~/assets/background/commissions-section.jpg';
-import GalleryImage from '~/assets/background/gallery-section.jpg';
-import HeroImage from '~/assets/background/hero-section.jpg';
-import StoreImage from '~/assets/background/store-section.jpg';
+import CommissionsImage from '~/assets/background/commissions-section.png';
+import GalleryImage from '~/assets/background/gallery-section.png';
+import HeroImage from '~/assets/background/hero-section.png';
+import StoreImage from '~/assets/background/store-section.png';
 import Logo from '~/components/atoms/icons/Logo';
 import Instagram from '~/components/atoms/icons/socials/Instagram';
 import KoFi from '~/components/atoms/icons/socials/Ko-Fi';
@@ -73,7 +73,7 @@ export default function Home() {
       </section>
       <section id='gallery-section' className={mainSectionStyles}>
         <h1 className='text-5xl font-bold'>Art Hall</h1>
-        <p className='mx-4 text-center text-xl font-bold'>
+        <p className='mx-4 text-xl font-bold text-center'>
           A walkthrough display of all of my artwork
         </p>
         <Link href='/gallery' className={buttonStyles}>
@@ -87,7 +87,7 @@ export default function Home() {
       </section>
       <section id='commissions-section' className={mainSectionStyles}>
         <h1 className='text-5xl font-bold'>Commissions</h1>
-        <p className='mx-4 text-center text-xl font-bold'>
+        <p className='mx-4 text-xl font-bold text-center'>
           Request a customized art piece from me
         </p>
         <Link href='/commissions' className={buttonStyles}>
@@ -101,7 +101,7 @@ export default function Home() {
       </section>
       <section id='store-section' className={mainSectionStyles}>
         <h1 className='text-5xl font-bold'>Store</h1>
-        <p className='mx-4 text-center text-xl font-bold'>
+        <p className='mx-4 text-xl font-bold text-center'>
           Purchase some merchandise from my store
         </p>
         <Link href='/store' className={buttonStyles}>

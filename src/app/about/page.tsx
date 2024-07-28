@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import AboutImage from '~/assets/background/about-hero.jpg';
+import AboutImage from '~/assets/background/about-page.png';
 import LazyImage from '~/components/atoms/LazyImage';
 
 const contentSizeStyles = clsx('w-[45vw] h-[800px] max-w-[600px]');
