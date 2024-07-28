@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import Image from 'next/image';
 import AboutImage from '~/assets/background/about-hero.jpg';
 import LazyImage from '~/components/atoms/LazyImage';
 
@@ -8,12 +7,10 @@ const contentSizeStyles = clsx('w-[45vw] h-[800px] max-w-[600px]');
 export default function About() {
   return (
     <>
-      
-
       <div className='grid mx-auto my-16 w-min justify-items-center'>
         <LazyImage
           className={clsx(
-            'z-[-1] col-[1] row-[1] mr-[200px] object-cover shadow-xl max-lg:mr-0 max-lg:w-[90vw] max-lg:max-w-none',
+            'z-[-1] col-[1] row-[1] mr-[200px] object-cover shadow-xl max-lg:hidden',
             contentSizeStyles
           )}
           src={AboutImage}
